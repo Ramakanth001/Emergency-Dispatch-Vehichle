@@ -1,0 +1,132 @@
+#include<stdio.h>
+#define INF 1000000007
+int size;
+int Traversed_path[30][30];
+void dijkstra(int graph[][size], int source) 
+{
+ int cost[size][size], distance[size];
+ int visited[size], i, j, k,count, minDistance, nextNode;
+ 
+ // Initialize cost matrix
+ for(i = 0; i < size; i++)
+ {
+    for(j = 0; j < size; j++) 
+    {
+        if(graph[i][j] == 0) //If source and node aren't directly connected
+        {
+            cost[i][j] = INF;
+        } 
+        else
+        {
+            cost[i][j] = graph[i][j];//If source and node are directly connected
+        }
+    }
+ }
+ // Initialize Tracable Traversed_path
+ for(i = 0; i < size; i++)
+ {
+    for(j = 0; j < size; j++) 
+    {
+        Traversed_path[i][j] = -1;
+    }
+ }
+ // distance of roots directly conneted to source
+ for(i = 0; i < size; i++) 
+ {
+    distance[i] = cost[source][i];
+    visited[i] = 0;
+ }
+ distance[source] = 0;// Distance from itself = 0
+ visited[source] = 1;// since traversing starts from the source, that node is clearly visited
+ count = 1;// source is the starting poit 
+ while(count < size - 1) 
+ {
+    minDistance = INF;
+    for(i = 0; i < size; i++) 
+    {
+        if(distance[i] < minDistance && !visited[i]) //Adjacent and un-visited 
+        {
+            minDistance = distance[i];
+            nextNode = i;
+        }
+    }
+ visited[nextNode] = 1;
+ for(i = 0; i < size; i++) 
+ {
+    if(!visited[i]) 
+    {
+        if(minDistance + cost[nextNode][i] < distance[i]) 
+        {
+            Traversed_path[nextnode][k]=i;
+            k++;
+            distance[i] = minDistance + cost[nextNode][i];
+        }
+    }
+ } 
+ count++;
+ }
+ for(i = 0; i < size; i++) 
+ {
+    printf("%d ", distance[i]);
+ }
+ printf("\nTraversed ");
+ for(i = 0; i < size; i++)
+ {
+    for(j = 0; j < size; j++) 
+    {
+        if(Traversed_path[i][j])!=-1)
+        {
+            printf("%d->",Traversed_path[i][j]);
+        }
+    }
+ }
+ 
+}
+void main() {
+ size = 28;
+ int source,destination_choice,destination;
+ int graph[28][28]={ 
+     
+                        {0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,2,3,0,0,0,0,0,0,0,0,0,0,0},
+                        {4,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                        {0,3,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0},
+                        {0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,4,0,0,0,0,0},
+                        {0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,3,0,0,0,0},
+                        {0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0},
+                        {0,0,0,0,0,2,0,0,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5},
+                        {0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0},
+                        {0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,3,0,2,0},
+                        {0,0,0,0,0,0,9,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0},
+                        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0},
+                        {0,0,0,0,0,0,0,0,0,4,0,0,2,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0},
+                        {0,0,0,0,0,0,0,0,2,0,0,0,0,2,0,0,0,0,0,2,0,0,0,0,0,0,0,0},
+                        {0,0,0,0,0,0,0,0,0,0,0,0,2,0,3,0,0,5,0,0,0,0,0,0,0,0,0,0},
+                        {0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,3,0,0,0,0,0,0,0,0,0,0,0,0},
+                        {2,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,4,0,0,0,0,0,0,0,0,0,0},
+                        {3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,2,0,0,0,0,0},
+                        {0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,4,2,0,0,0,0,0,0,0,0,0,0,0},
+                        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,0},
+                        {0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0},
+                        {0,0,0,0,0,0,0,0,0,6,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,3},
+                        {0,0,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0},
+                        {0,0,3,3,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,7,0,0,0},
+                        {0,0,0,4,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                        {0,0,0,0,0,0,0,0,2,0,1,0,0,0,0,0,0,0,0,1,0,0,7,0,0,0,0,0},
+                        {0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0},
+                        {0,0,0,0,0,0,0,0,2,4,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0},
+                        {0,0,0,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0}
+
+};
+printf("Select source from the following:\n");
+printf("****Prime City Locations***\n1.Georgopol\n2.LosSantos\n3.Novo\n4.Lipovka\n5.SanMartin\n6.YasnayaPolana\n7.Severny\n8.Pecado\n9.Gronnus\n10.Blomster\n11.Sosnovka\n12.Pochinki\n13.Miramar\n14.Livik\n15.Sanhok\n16.Rozhok\n17.LosLeones\n18.Gatka\n19.Zharki\n20.NorthYanton\n21.Mylta\n22.Midstein");
+scanf("%d",&source);
+printf("Would you like to:\n 1.Navigate to the nearest hospital \n2.Manually choose the hospital\n");
+scanf("%d",&destination_choice);
+if(destination_choice==2)
+{
+    printf("Select destination from the following:\n");
+    printf("\t\t***Hospitals***\n1.Central Los Santos Medical Center\n2.Mount Zonah Medical Center\n3.Sandy Shores Medical Center\n4.The Bay Care Center\n5.Portola Trinity Medical Center\n6.St.Fiacre Medical Center\n");
+    scanf("%d",&destination);
+}
+dijkstra(graph, source-1);
+}
