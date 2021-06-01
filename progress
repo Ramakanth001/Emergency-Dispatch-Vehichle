@@ -61,6 +61,64 @@ void dijkstra(int graph[][size], int source)
     allDistances[i]=distance[i];
     printf("%d ", allDistances[i]);
  }
+ int shortestDistance=allDistances[22];
+int similar_distances[6];//equal length paths
+int hosp=22;
+i=22;
+int p=0;//array index of same optimal distance paths
+while(i<28)
+{
+    if(allDistances[i]<shortestDistance)//for equal paths make <=
+    {
+        //if(allDistances[i]==shortestDistance)
+        //{
+          //  similar_distances[p]=allDistances[i];
+            //p++;
+        //}
+        //else
+    
+          shortestDistance=allDistances[i];
+          hosp=i;
+        
+    }
+    i++;
+}
+if (destintion_chosen==0)//Nearest hospital 
+{
+    printf("\nConsidering traffic and distance\nNearest hospital is : ");
+    switch(hosp+1)
+    {
+        case 23 :
+            printf("Central Los Santos Medical Center\n");
+            break;
+        case 24 :
+            printf("Mount Zonah Medical Center\n");
+            break;
+        case 25 :
+            printf("Sandy Shores Medical Center\n");
+            break;
+        case 26 :
+            printf("The Bay Care Center\n");
+            break;
+        case 27 :
+            printf("Portola Trinity Medical Center\n");
+            break;
+        case 28 :
+            printf("St.Fiacre Medical Center\n");
+            break;
+    }
+    printf("It is %d kms away",shortestDistance);
+}
+else //Manually chosen destintion
+ {
+    while(destintion_chosen < 7)
+    {
+        printf("\nIt is %d kms away",allDistances[destintion_chosen+21]);
+        //destination gets coverted to node number in city [(1-6) + 21 = (22-27)]
+        break;
+    }
+}
+
  
 }
 void main() {
@@ -168,61 +226,5 @@ while(optimization_path)//Enables viewing multiple optimizations
     printf("if no enter 0\n");
     scanf("%d",&optimization_path);
 }
-
-int shortestDistance=allDistances[22];
-int similar_distances[6];//equal length paths
-int i=22,hosp=22;
-int p=0;//array index of same optimal distance paths
-while(i<28)
-{
-    if(allDistances[i]<shortestDistance)//for equal paths make <=
-    {
-        //if(allDistances[i]==shortestDistance)
-        //{
-          //  similar_distances[p]=allDistances[i];
-            //p++;
-        //}
-        //else
-    
-          shortestDistance=allDistances[i];
-          hosp=i;
-        
-    }
-    i++;
 }
-if (destintion_chosen==0)//Nearest hospital 
-{
-    printf("\nConsidering traffic and distance\nNearest hospital is : ");
-    switch(hosp+1)
-    {
-        case 23 :
-            printf("Central Los Santos Medical Center\n");
-            break;
-        case 24 :
-            printf("Mount Zonah Medical Center\n");
-            break;
-        case 25 :
-            printf("Sandy Shores Medical Center\n");
-            break;
-        case 26 :
-            printf("The Bay Care Center\n");
-            break;
-        case 27 :
-            printf("Portola Trinity Medical Center\n");
-            break;
-        case 28 :
-            printf("St.Fiacre Medical Center\n");
-            break;
-    }
-    printf("It is %d kms away",shortestDistance);
-}
-else //Manually chosen destintion
- {
-    while(destintion_chosen < 7)
-    {
-        printf("\nIt is %d kms away",allDistances[destintion_chosen+21]);
-        //destination gets coverted to node number in city [(1-6) + 21 = (22-27)]
-        break;
-    }
-}}
 
