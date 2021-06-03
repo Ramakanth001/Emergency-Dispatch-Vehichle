@@ -45,22 +45,10 @@ void dijkstra(int graph[][size], int source)
  visited[nextNode] = 1;
  for(i = 0; i < size; i++) 
  {
-    if(!visited[i]) 
-    {
-        if(minDistance + cost[nextNode][i]  < distance[i]) 
-        {
-            distance[i] = minDistance + cost[nextNode][i] ;
-        }
-    }
+    //relaxation
  } cnt++;
  }
- for(i = 0; i < size; i++) 
- {
-    allDistances[i]=distance[i];
-    printf("%d ", allDistances[i]);
- }
- 
-}
+
 void main() {
  size = 28;
  int graph[28][28]={ 
@@ -144,15 +132,7 @@ printf("\t\t***Hospitals***\n1.Central Los Santos Medical Center\n2.Mount Zonah 
 dijkstra(graph, source_chosen-1);
 int shortestDistance=allDistances[22];
 int i=22,hosp=22;
-while(i<28)
-{
-    if(allDistances[i]<shortestDistance)
-    {
-      shortestDistance=allDistances[i];
-      hosp=i;  
-    }
-    i++;
-}
+
 printf("\nConsidering traffic and distance\nNearest hospital is : ");
     
 switch(hosp+1)
