@@ -1,12 +1,20 @@
 #include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<time.h>
 #define INF 99999999
-int size,source_chosen,destintion_chosen,i,j,optimization_path;
-int total_graph[28][28],allDistances[28];;
+int size,source_chosen,destintion_chosen;
+int i,j,bookingStatus;
+int hosp=22,optimization_path;
+char status;
+int allDistances[28];
+int total_graph[28][28];// Graph for both distance and traffic
+int graph[28][28];//graph for distances
+int traffic_graph[28][28];// graph for traffic
 void dijkstra(int graph[][size], int source) 
 {
  int cost[size][size],distance[size];
  int traffic_graph[28][28];
- 
  int visited[size], i, j, cnt, minDistance, nextNode;
  int optimization_path;
  // Initialize cost matrix
@@ -45,13 +53,14 @@ void dijkstra(int graph[][size], int source)
         }
     }
  visited[nextNode] = 1;
- for(i = 0; i < size; i++) 
+ for(i = 0; i < size; i++) //Relaxation function
  {
     if(!visited[i]) 
     {
         if(minDistance + cost[nextNode][i]  < distance[i]) 
         {
             distance[i] = minDistance + cost[nextNode][i] ;
+            
         }
     }
  } cnt++;
@@ -61,69 +70,16 @@ void dijkstra(int graph[][size], int source)
     allDistances[i]=distance[i];
     printf("%d ", allDistances[i]);
  }
- int shortestDistance=allDistances[22];
-int similar_distances[6];//equal length paths
-int hosp=22;
-i=22;
-int p=0;//array index of same optimal distance paths
-while(i<28)
+}
+void costfunction( int units)//Fare estimation function
 {
-    if(allDistances[i]<shortestDistance)//for equal paths make <=
-    {
-        //if(allDistances[i]==shortestDistance)
-        //{
-          //  similar_distances[p]=allDistances[i];
-            //p++;
-        //}
-        //else
+    printf("\nEstimated fare for given distance and fare is %d rupees\n",units*15);
+    // Fare per one kilometer is 15 rupees
     
-          shortestDistance=allDistances[i];
-          hosp=i;
-        
-    }
-    i++;
-}
-if (destintion_chosen==0)//Nearest hospital 
-{
-    printf("\nConsidering traffic and distance\nNearest hospital is : ");
-    switch(hosp+1)
-    {
-        case 23 :
-            printf("Central Los Santos Medical Center\n");
-            break;
-        case 24 :
-            printf("Mount Zonah Medical Center\n");
-            break;
-        case 25 :
-            printf("Sandy Shores Medical Center\n");
-            break;
-        case 26 :
-            printf("The Bay Care Center\n");
-            break;
-        case 27 :
-            printf("Portola Trinity Medical Center\n");
-            break;
-        case 28 :
-            printf("St.Fiacre Medical Center\n");
-            break;
-    }
-    printf("It is %d kms away",shortestDistance);
-}
-else //Manually chosen destintion
- {
-    while(destintion_chosen < 7)
-    {
-        printf("\nIt is %d kms away",allDistances[destintion_chosen+21]);
-        //destination gets coverted to node number in city [(1-6) + 21 = (22-27)]
-        break;
-    }
-}
-
- 
 }
 void main() {
  size = 28;
- int graph[28][28]={ 
+int graph[28][28]={ 
      
                         {0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,2,3,0,0,0,0,0,0,0,0,0,0,0},
                         {4,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -203,28 +159,88 @@ printf("Select destintion from the following:\n");
 printf("\t\t***Hospitals***\n1.Central Los Santos Medical Center\n2.Mount Zonah Medical Center\n3.Sandy Shores Medical Center\n4.The Bay Care Center\n5.Portola Trinity Medical Center\n6.St.Fiacre Medical Center\n\tOR\n\n");
 printf("Enter 0 to choose shortest hospital\n");
 scanf("%d",&destintion_chosen);
-a: printf("choose one of the following:\n1.optimization based on distance\n2.optimization based on traffic\n3.optimization based on traffic and distance\n");
-scanf("%d",&optimization_path);
-while(optimization_path)//Enables viewing multiple optimizations
+dijkstra(total_graph, source_chosen-1);
+int shortestDistance=allDistances[22];
+int similar_distances[6];//equal length paths
+
+i=22;
+int p=0;//array index of same optimal distance paths
+while(i<28)
 {
-    switch(optimization_path)
+    if(allDistances[i]<shortestDistance)//for equal paths make <=
     {
-        case 1:
-            dijkstra(graph, source_chosen-1);
-            break;
-        case 2:
-            dijkstra(traffic_graph, source_chosen-1);
-            break;
-        case 3:
-            dijkstra(total_graph, source_chosen-1);
-            break;
-        default:
-            printf("\n choose one among the given optimizations\n");
-            goto a;
+        //if(allDistances[i]==shortestDistance)
+        //{
+          //  similar_distances[p]=allDistances[i];
+            //p++;
+        //}
+        //else
+    
+          shortestDistance=allDistances[i];
+          hosp=i;
     }
-    printf("\n would you like to see another optimization?\nif yes choose one of the following:\n1.optimization based on distance\n2.optimization based on traffic\n3.optimization based on traffic and distance\n");
-    printf("if no enter 0\n");
-    scanf("%d",&optimization_path);
+    i++;
 }
+char hospitalName[50] = "Central Los Santos Medical Center";
+if (destintion_chosen==0)//Nearest hospital 
+{
+    printf("\nConsidering traffic and distance\nNearest hospital is : ");
+    switch(hosp+1)
+    {
+        case 23 :
+            char hospitalName[] = "Central Los Santos Medical Center";
+            printf("%s\n",hospitalName);
+            break;
+        case 24 :
+            printf("Mount Zonah Medical Center\n");
+            break;
+        case 25 :
+            printf("Sandy Shores Medical Center\n");
+            break;
+        case 26 :
+            printf("The Bay Care Center\n");
+            break;
+        case 27 :
+            printf("Portola Trinity Medical Center\n");
+            break;
+        case 28 :
+            printf("St.Fiacre Medical Center\n");
+            break;
+    }
+    printf("It is %d kms away\n\n",shortestDistance);
+    costfunction(shortestDistance);
+ 
+    
 }
+else //Manually chosen destintion
+ {
+    while(destintion_chosen < 7)
+    {
+        printf("\nIt is %d kms away",allDistances[destintion_chosen+21]);
+        //destination gets coverted to node number in city [(1-6) + 21 = (22-27)]
+        costfunction(allDistances[destintion_chosen+21]);
+        break;
+    }
+}
+printf("Would you like to confirm your ambulance booking?\npress(Y/N)");
+scanf("%c",&status);
+if(status=='Y' || status=='y')
+{
+    bookingStatus= 1 ;
+}
+if(status=='N' || status=='n')
+{
+    bookingStatus= 0 ;
+}
+if(bookingStatus)
+{
+    printf("\n\n***DETAILS REGARDING DISPATCH***\n\n");
+    printf("source : ");
+}
+
+
+
+
+}
+
 
