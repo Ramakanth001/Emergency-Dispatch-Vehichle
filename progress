@@ -188,8 +188,7 @@ if (destintion_chosen==0)//Nearest hospital
     switch(hosp+1)
     {
         case 23 :
-            char hospitalName[] = "Central Los Santos Medical Center";
-            printf("%s\n",hospitalName);
+            printf("Central Los Santos Medical Center\n");
             break;
         case 24 :
             printf("Mount Zonah Medical Center\n");
@@ -216,6 +215,7 @@ else //Manually chosen destintion
  {
     while(destintion_chosen < 7)
     {
+        hosp = destintion_chosen+21;
         printf("\nIt is %d kms away",allDistances[destintion_chosen+21]);
         //destination gets coverted to node number in city [(1-6) + 21 = (22-27)]
         costfunction(allDistances[destintion_chosen+21]);
@@ -242,5 +242,3 @@ if(bookingStatus)
 
 
 }
-
-
