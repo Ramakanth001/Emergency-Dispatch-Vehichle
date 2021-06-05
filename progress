@@ -1,16 +1,139 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include<conio.h>
 #include<time.h>
 #define INF 99999999
 int size,source_chosen,destintion_chosen;
-int i,j,bookingStatus;
+int i,j,bookingStatus,choice;;
 int hosp=22,optimization_path;
-char status;
+int status,finalCost;
 int allDistances[28];
+char hospitalName[50]= "";//Empty string for hosp name
+char sourceName[50]= "";//Empty string for source name
 int total_graph[28][28];// Graph for both distance and traffic
 int graph[28][28];//graph for distances
 int traffic_graph[28][28];// graph for traffic
+void choose();
+void signup();
+void login();
+void display();
+void Hospitaldetermine(int);
+
+struct user
+{
+	char name[20];
+	char password[20];
+	long long int phoneNumber;
+	char gmail[30];
+};
+void signup()
+{	
+struct user u1;
+FILE *fp;
+
+
+	fp=fopen("D:\\nikhil.txt","a");
+	if(fp==NULL)
+	{
+		printf("\n file does not exist");
+		
+	}
+	printf("\n enter the name\n");
+	scanf("%s",u1.name);
+	fprintf(fp,"Name = %s \n",u1.name);
+	printf(" enter the password\n");
+	scanf("%s",u1.password);
+	fprintf(fp,"Password = %s \n",u1.password);
+	printf(" enter the phoneNumber\n");
+	scanf("%lli",&u1.phoneNumber);
+	fprintf(fp,"PhoneNumber = %lli \n",u1.phoneNumber);
+	printf(" enter the gmail\n");
+	scanf("%s",u1.gmail);
+	fprintf(fp,"Gmail = %s \n",u1.gmail);
+	fclose(fp);
+	printf("\nAccount created Successfully\n");
+	choose();
+}
+
+void login()
+{     
+
+	FILE* fp;
+	int wordExist1=0;
+	int bufferLength1 = 255;
+	char search1[100];
+	printf("Enter Username\n");
+	scanf("%s",search1);
+
+	char line1[bufferLength1];
+	fp = fopen("D:\\nikhil.txt", "r");
+	while(fgets(line1, bufferLength1, fp))
+	{
+		char *ptr1 = strstr(line1, search1);
+		if (ptr1 != NULL) 
+		{
+			wordExist1=1;
+			break;
+		}
+	}
+	fclose(fp);
+	
+	int wordExist2=0;
+	int bufferLength2 = 255;
+	char search2[100];
+	printf("Enter Password\n");
+	scanf("%s",search2);
+
+	char line2[bufferLength2];
+	fp = fopen("D:\\nikhil.txt", "r");
+	while(fgets(line2, bufferLength2, fp))
+	{
+		char *ptr2 = strstr(line2, search2);
+		if (ptr2 != NULL) 
+		{
+			wordExist2=1;
+			break;
+		}
+	}
+	fclose(fp);
+	
+	if(wordExist1==1 && wordExist2==1)
+	{
+		printf("\n Successfully Logged In!");
+	}
+	else
+	{
+		printf("\n No such account exists");
+		exit(0);
+	}
+	
+	
+}  
+
+
+
+void display()
+{
+	FILE *fp;
+	char ch;
+	printf("\n================================================================================================\n\n");
+	printf("\t\t                      WELCOME TO \n \n");
+	printf("\t\t                   PRIME HEALTH CARE \n \n");
+	fp=fopen("D:\\nikhil.txt","r");
+	ch=getc(fp);
+	
+	while(ch!=EOF)
+	{
+		printf("%c",ch);
+		ch=getc(fp);
+	}
+
+	printf("\n================================================================================================\n\n");
+	fclose(fp);
+	choose();
+}
+
 void dijkstra(int graph[][size], int source) 
 {
  int cost[size][size],distance[size];
@@ -68,17 +191,109 @@ void dijkstra(int graph[][size], int source)
  for(i = 0; i < size; i++) 
  {
     allDistances[i]=distance[i];
-    printf("%d ", allDistances[i]);
+    //printf("%d ", allDistances[i]);
  }
 }
 void costfunction( int units)//Fare estimation function
 {
-    printf("\nEstimated fare for given distance and fare is %d rupees\n",units*15);
+    finalCost=units*25;
+    printf("\nEstimated fare for given distance is %d rupees\n",finalCost);
     // Fare per one kilometer is 15 rupees
     
 }
-void main() {
- size = 28;
+void Hospitaldetermine(int hos)// Resolving name to destination
+{
+if(hos+1==23)
+{
+//hospitalName[50] = Central Los Santos Medical Center';
+ strcat(hospitalName,"Central Los Santos Medical Center");
+}
+if(hos+1==24)
+strcat(hospitalName,"Mount Zonah Medical Center");
+if(hos+1==25)
+strcat(hospitalName,"Sandy Shores Medical Center");
+if(hos+1==26)
+strcat(hospitalName,"The Bay Care Center");
+if(hos+1==27)
+strcat(hospitalName,"Portola Trinity Medical Center");
+if(hos+1==28)
+strcat(hospitalName,"St.Fiacre Medical Center");
+
+}
+void sourceDetermine(int source_chosen)// Resolving name to source
+{
+
+if(source_chosen==1)
+strcat(sourceName,"Georgopol");
+if(source_chosen==3)
+strcat(sourceName,"Novo");
+if(source_chosen==4)
+strcat(sourceName,"Lipovka");
+if(source_chosen==5)
+strcat(sourceName,"SanMartin");
+if(source_chosen==6)
+strcat(sourceName,"YasnayaPolana");
+if(source_chosen==7)
+strcat(sourceName,"Severny");
+if(source_chosen==8)
+strcat(sourceName,"Pecado");
+if(source_chosen==9)
+strcat(sourceName,"Gronnus");
+if(source_chosen==10)
+strcat(sourceName,"Blomster");
+if(source_chosen==11)
+strcat(sourceName,"Sosnovka");
+if(source_chosen==12)
+strcat(sourceName,"Pochinki");
+if(source_chosen==13)
+strcat(sourceName,"Miramar");
+if(source_chosen==14)
+strcat(sourceName,"Livik");
+if(source_chosen==15)
+strcat(sourceName,"Sanhok");
+if(source_chosen==16)
+strcat(sourceName,"Rozhok");
+if(source_chosen==17)
+strcat(sourceName,"LosLeones");
+if(source_chosen==18)
+strcat(sourceName,"Gatka");
+if(source_chosen==19)
+strcat(sourceName,"Zharki");
+if(source_chosen==20)
+strcat(sourceName,"NorthYanton");
+if(source_chosen==21)
+strcat(sourceName,"Mylta");
+if(source_chosen==22)
+strcat(sourceName,"Midstein");
+}
+void choose ()
+{
+    printf("\n");
+y :	printf("\n 1.SIGNUP");
+	printf("\n 2.LOGIN");
+	printf("\n 3.DISPLAY ");
+	printf("\n 4.EXIT");
+	printf("\n Enter your choice\n");
+	scanf("%d",&choice);
+	switch(choice)
+	{
+		case 1:signup();
+		break;
+		case 2:login();
+		break;
+		case 3:display();
+		break;
+		case 4:exit(1);
+		default :printf("Invalid choice");	
+		
+	}
+}
+
+void main() 
+{
+printf("\n\t\t*****WELCOME TO PRIME CITY'S AMBULANCE DISPATCH SERVICE*****\n");
+choose();// Account creation and credential verification
+size = 28;
 int graph[28][28]={ 
      
                         {0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,2,3,0,0,0,0,0,0,0,0,0,0,0},
@@ -155,6 +370,7 @@ for(i = 0; i < size; i++)
 printf("Select source from the following:\n");
 printf("****Prime City Locations***\n1.Georgopol\n2.LosSantos\n3.Novo\n4.Lipovka\n5.SanMartin\n6.YasnayaPolana\n7.Severny\n8.Pecado\n9.Gronnus\n10.Blomster\n11.Sosnovka\n12.Pochinki\n13.Miramar\n14.Livik\n15.Sanhok\n16.Rozhok\n17.LosLeones\n18.Gatka\n19.Zharki\n20.NorthYanton\n21.Mylta\n22.Midstein\n");
 scanf("%d",& source_chosen);
+sourceDetermine(source_chosen);
 printf("Select destintion from the following:\n");
 printf("\t\t***Hospitals***\n1.Central Los Santos Medical Center\n2.Mount Zonah Medical Center\n3.Sandy Shores Medical Center\n4.The Bay Care Center\n5.Portola Trinity Medical Center\n6.St.Fiacre Medical Center\n\tOR\n\n");
 printf("Enter 0 to choose shortest hospital\n");
@@ -181,32 +397,13 @@ while(i<28)
     }
     i++;
 }
-char hospitalName[50] = "Central Los Santos Medical Center";
+
 if (destintion_chosen==0)//Nearest hospital 
 {
-    printf("\nConsidering traffic and distance\nNearest hospital is : ");
-    switch(hosp+1)
-    {
-        case 23 :
-            printf("Central Los Santos Medical Center\n");
-            break;
-        case 24 :
-            printf("Mount Zonah Medical Center\n");
-            break;
-        case 25 :
-            printf("Sandy Shores Medical Center\n");
-            break;
-        case 26 :
-            printf("The Bay Care Center\n");
-            break;
-        case 27 :
-            printf("Portola Trinity Medical Center\n");
-            break;
-        case 28 :
-            printf("St.Fiacre Medical Center\n");
-            break;
-    }
-    printf("It is %d kms away\n\n",shortestDistance);
+    printf("\nConsidering traffic and distance :\n");
+    Hospitaldetermine(hosp+1);
+    printf("Nearest hospital is : %s",hospitalName);
+    printf("\nIt is %d kms away\n\n",shortestDistance);
     costfunction(shortestDistance);
  
     
@@ -216,29 +413,26 @@ else //Manually chosen destintion
     while(destintion_chosen < 7)
     {
         hosp = destintion_chosen+21;
+        Hospitaldetermine(hosp+1);
         printf("\nIt is %d kms away",allDistances[destintion_chosen+21]);
         //destination gets coverted to node number in city [(1-6) + 21 = (22-27)]
         costfunction(allDistances[destintion_chosen+21]);
         break;
     }
 }
-printf("Would you like to confirm your ambulance booking?\npress(Y/N)");
-scanf("%c",&status);
-if(status=='Y' || status=='y')
-{
-    bookingStatus= 1 ;
+printf("Would you like to confirm your ambulance booking?\npress(1/0)\n");
+scanf("%d",&status);
+if(status==1)
+{   
+    printf("Ambulance booked successfully!!\n");
 }
-if(status=='N' || status=='n')
+if(status)
 {
-    bookingStatus= 0 ;
+    printf("\n\t***DETAILS REGARDING DISPATCH***\n\n");
+    printf("source : %s\n",sourceName);
+    printf("destination : %s\n",hospitalName);
+    printf("fare : %d rupees\n",finalCost);
+    
 }
-if(bookingStatus)
-{
-    printf("\n\n***DETAILS REGARDING DISPATCH***\n\n");
-    printf("source : ");
-}
-
-
-
-
+choose();//re-logging after booking
 }
