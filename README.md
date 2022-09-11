@@ -12,7 +12,7 @@ of nodes. It works on relaxation principle and fails to work on negative edges.
     {
         if(minDistance + cost[nextNode][i] < distance[i]) 
         {
-            distance[i] = minDistance + cost[nextNode][i] ;
+            distance[i] = minDistance + cost[nextNode][i] 
             
         }
     }
