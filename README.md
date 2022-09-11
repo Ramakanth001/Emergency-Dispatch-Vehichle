@@ -9,8 +9,8 @@ of nodes. It works on relaxation principle and fails to work on negative edges.
 
 > **Relaxation principle:**
 >>if(!visited[i]) :
-        >if(minDistance + cost[nextNode][i] < distance[i]) :
-         >   distance[i] = minDistance + cost[nextNode][i] 
+>>        >if(minDistance + cost[nextNode][i] < distance[i]) :
+>>         >   distance[i] = minDistance + cost[nextNode][i] 
 
 # Algorithm working
 During the course of travel since the traffic density isn’t constant, different traffic 
