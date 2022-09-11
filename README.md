@@ -8,9 +8,14 @@ is also called as single source shortest path approach. Dijkstra works affective
 of nodes. It works on relaxation principle and fails to work on negative edges.
 
 > **Relaxation principle:**
->> *if directly_connected(v, u):
-    if est(S, v) > est(S, u) + dist(u,v):
-       est(S, v) = est(S, u) + dist(u, v)
+>>if(!visited[i]) 
+    {
+        if(minDistance + cost[nextNode][i] < distance[i]) 
+        {
+            distance[i] = minDistance + cost[nextNode][i] ;
+            
+        }
+    }
 
 # Algorithm working
 During the course of travel since the traffic density isn’t constant, different traffic 
@@ -19,3 +24,4 @@ very high. As the traffic density increases, weight of the path is increased. So
 distance and traffic densities are deciding factors for weight of that particular path. 
 Based on the weight, routing is organized. Shortest weighed path is chosen as optimal path.
 
+# 
