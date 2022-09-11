@@ -4,7 +4,7 @@ source and destination as inputs and providing an optimum path during the course
 
 # Dijkstra algorithm
 
->>Algorithm working
+> Algorithm working
 During the course of travel since the traffic density isn’t constant, different traffic 
 densities are allocated between each of the locations. The densities range from low to 
 very high. As the traffic density increases, weight of the path is increased. So the 
