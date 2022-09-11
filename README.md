@@ -14,7 +14,7 @@ of nodes. It works on relaxation principle and fails to work on negative edges.
 >>>           where, 
 >>>           cost[i][j]=graph[i][j]+traffic_graph[i][j];
 
-> **Algorithm working**
+> **Algorithm working                                           :**                     
 During the course of travel since the traffic density isn’t constant, different traffic 
 densities are allocated between each of the locations. The densities range from low to 
 very high. As the traffic density increases, weight of the path is increased. So the 
