@@ -1,2 +1,3 @@
 # Emergency-Dispatch-Vehichle
-A Project on  Design And Analysis of Algorithms using Dijkstra algorithm.
+The objective of this project is to find and allocate an available emergency vehicle, taking source and destination as inputs and providing an optimum path during the course of travel.
+>(Dijkstra algorithm)
