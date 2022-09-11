@@ -2,7 +2,7 @@
 The objective of this project is to find and allocate an available emergency vehicle, taking 
 source and destination as inputs and providing an optimum path during the course of travel.
 
-#Dijkstra algorithm
+# Dijkstra algorithm
 >
 >>Algorithm working
 During the course of travel since the traffic density isn’t constant, different traffic 
