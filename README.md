@@ -1,6 +1,8 @@
 # Emergency-Dispatch-Vehichle with Re-Routing
-The objective of this project is to find and allocate an available emergency vehicle, taking 
-source and destination as inputs and providing an optimum path during the course of travel.
+> The objective of this project is to find and allocate an available emergency vehicle, taking 
+> source and destination as inputs and providing an optimum path during the course of travel.
+> In case of difficulties during admission into the hosipital re-routing can be opted within a 
+> grace period of ten minutes to a different hosipital.
 
 # Dijkstra algorithm
 Dijkstra algorithm was devised to find the shortest distance between two nodes. This algorithm 
