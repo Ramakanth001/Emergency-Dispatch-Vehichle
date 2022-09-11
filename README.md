@@ -10,9 +10,9 @@ of nodes. It works on relaxation principle and fails to work on negative edges.
 > **Relaxation principle:**
 >> Approach:
 >>>         if(!visited[i]) :
->>>         if(minDistance + cost[nextNode][i] < distance[i]) :
->>>           distance[i] = minDistance + cost[nextNode][i] 
->>>           where, 
+>>>           if(minDistance + cost[nextNode][i] < distance[i]) :
+>>>             distance[i] = minDistance + cost[nextNode][i] 
+>>>          where, 
 >>>           cost[i][j]=graph[i][j]+traffic_graph[i][j];
 
 > **Algorithm working                                           :**           
