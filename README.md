@@ -31,9 +31,10 @@ Based on the weight, routing is organized. Shortest weighed path is chosen as op
 > need not waste their time in checkin for a different ambulance rather ro-route in the same 
 > ambulance. The grace period offered to opt for re-routing is ten minutes
 
-When the source location is selected, the user is asked to either choose a hospital or a 
-nearby hospital would be allocated. If due to any technical reasons like non availability 
-of hospital beds, closed admissions, lack of medical equipment in destined hospital or 
-need of increase in criticality of case and advanced medical supervision is required, the 
-status of admission is recorded and re-routing to a different hospital gets enabled.
+> **Working:**
+> When the source location is selected, the user is asked to either choose a hospital or a 
+> nearby hospital would be allocated. If due to any technical reasons like non availability 
+> of hospital beds, closed admissions, lack of medical equipment in destined hospital or 
+> need of increase in criticality of case and advanced medical supervision is required, the 
+> status of admission is recorded and re-routing to a different hospital gets enabled.
 
