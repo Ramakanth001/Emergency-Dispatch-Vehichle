@@ -20,11 +20,11 @@ of nodes. It works on relaxation principle and fails to work on negative edges.
 
 > **Algorithm working                                           :**           
 >           
-During the course of travel since the traffic density isn’t constant, different traffic 
-densities are allocated between each of the locations. The densities range from low to 
-very high. As the traffic density increases, weight of the path is increased. So the 
-distance and traffic densities are deciding factors for weight of that particular path. 
-Based on the weight, routing is organized. Shortest weighed path is chosen as optimal path.
+> During the course of travel since the traffic density isn’t constant, different traffic 
+> densities are allocated between each of the locations. The densities range from low to 
+> very high. As the traffic density increases, weight of the path is increased. So the 
+> distance and traffic densities are deciding factors for weight of that particular path. 
+> Based on the weight, routing is organized. Shortest weighed path is chosen as optimal path.
 
 
 # Re-Routing
