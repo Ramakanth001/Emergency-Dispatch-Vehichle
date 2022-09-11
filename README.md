@@ -8,8 +8,8 @@ is also called as single source shortest path approach. Dijkstra works affective
 of nodes. It works on relaxation principle and fails to work on negative edges.
 
 > **Relaxation principle:**
->> 
->> if(!visited[i]) :
+>> Approach:
+>>> if(!visited[i]) :
 >>>        if(minDistance + cost[nextNode][i] < distance[i]) :
 >>>           distance[i] = minDistance + cost[nextNode][i] 
 >>>           where, 
