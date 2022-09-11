@@ -7,9 +7,9 @@ Dijkstra algorithm was devised to find the shortest distance between two nodes. 
 is also called as single source shortest path approach. Dijkstra works affectively on large network
 of nodes. It works on relaxation principle and fails to work on negative edges.
 
-> Relaxation principle
->>if directly_connected(v, u)
-    if est(S, v) > est(S, u) + dist(u,v)
+> Relaxation principle:
+>>if directly_connected(v, u):
+    if est(S, v) > est(S, u) + dist(u,v):
        est(S, v) = est(S, u) + dist(u, v)
 
 # Algorithm working
