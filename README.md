@@ -9,7 +9,7 @@ Dijkstra algorithm was devised to find the shortest distance between two nodes. 
 is also called as single source shortest path approach. Dijkstra works affectively on large network
 of nodes. It works on relaxation principle and fails to work on negative edges.
 
-> **Approach: **
+> **Approach:**
 >> **Relaxation principle::**
 >>>         if(!visited[i]) :
 >>>           if(minDistance + cost[nextNode][i] < distance[i]) :
