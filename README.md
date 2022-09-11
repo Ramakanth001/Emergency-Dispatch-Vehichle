@@ -11,6 +11,8 @@ of nodes. It works on relaxation principle and fails to work on negative edges.
 >> if(!visited[i]) :
 >>>        if(minDistance + cost[nextNode][i] < distance[i]) :
 >>>           distance[i] = minDistance + cost[nextNode][i] 
+>>>           where, 
+>>>           total_graph[i][j]=graph[i][j]+traffic_graph[i][j];
 
 # Algorithm working
 During the course of travel since the traffic density isn’t constant, different traffic 
